@@ -145,7 +145,9 @@ def main():
     #
     #------------------------------------------------------------
     testing_filepath = './lip-guidance-test/dataset-version2.0.xlsx'
+    print(testing_filepath)
     test_df = read_excel_as_dataframe(testing_filepath)
+    print(test_df.head(1))
     test_df = test_df[['ID', 'question', 'ground_truth_human_generated']]
     #test_df = test_df.drop_duplicates()
 
