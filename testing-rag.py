@@ -9,6 +9,9 @@ import time
 import re
 from langchain.prompts import PromptTemplate
 from huggingface_hub import login
+from dotenv import dotenv_values
+
+config = dotenv_values(".env")
 
 custom_prompt_template = """
 You are a knowledgeable assistant. Use the following context to answer the user's question.
@@ -133,7 +136,7 @@ def main():
     start_time = time.time()
 
     # LOGIN TO HF
-    login("token")
+    login(config['HF_TOKEN'])
 
     # SETTINGS
     top_k = 5
