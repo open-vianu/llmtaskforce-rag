@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 
 import argparse
+import math
+import os
 import re
 import time
-
 import pandas as pd
+
 from datetime import datetime
 from pdf_extractor import get_pdf_text, get_text_chunks, get_vectorstore
 from langchain.chains import ConversationalRetrievalChain
@@ -216,7 +218,10 @@ def run_default_pipeline(args):
         current_user_question = test_df['question'].iloc[i]
         q_id = test_df['ID'].iloc[i]
         print(f'\n--- Current user question ---\n: {current_user_question}\n')
-
+        if type(current_user_question) != str:
+            print('Invalid user question')
+            continue
+        
         # Get top-K results with similarity scores
         docs_with_scores = vectorstore.similarity_search_with_score(current_user_question, k=top_k)
         current_response = conversation_chain({"question": current_user_question})
@@ -265,6 +270,8 @@ def run_default_pipeline(args):
     print(f"Total runtime: {elapsed_time:.2f} seconds")
 
     # Save results to Excel
+    if not os.path.exists('data'):
+        os.mkdir('data')
     output_filepath = "data/results.xlsx"
     results_df = pd.DataFrame(results)
     results_df['Elapsed seconds for experiment'] = elapsed_time
