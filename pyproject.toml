@@ -19,6 +19,9 @@ langchain-ollama = "^0.3.0"
 openpyxl = "^3.1.5"
 dotenv = "^0.9.9"
 
+[tool.poetry.extras]
+cpu = ["faiss-cpu"]
+gpu = ["faiss-gpu-cu12"]
 
 [build-system]
 requires = ["poetry-core"]
