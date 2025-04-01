@@ -9,6 +9,13 @@ packages = [{include = "llmtaskforce_rag"}]
 [tool.poetry.dependencies]
 python = "^3.11"
 pandas = "^2.2.3"
+streamlit = "^1.44.0"
+pypdf2 = "^3.0.1"
+ollama = "^0.4.7"
+langchain = "^0.3.22"
+langchain-huggingface = "^0.1.2"
+langchain-community = "^0.3.20"
+langchain-ollama = "^0.3.0"
 
 
 [build-system]
