@@ -63,8 +63,8 @@ def get_vectorstore(text_chunks):
         #embeddings = HuggingFaceEmbeddings(model_name="hkunlp/instructor-xl",
         #                           model_kwargs={'device': 'mps'}, encode_kwargs={'device': 'mps'})
 
-        embeddings = HuggingFaceEmbeddings(model_name="NovaSearch/stella_en_400M_v5")
-        #embeddings = HuggingFaceEmbeddings(model_name="hkunlp/instructor-xl")
+        #embeddings = HuggingFaceEmbeddings(model_name="NovaSearch/stella_en_400M_v5")
+        embeddings = HuggingFaceEmbeddings(model_name="hkunlp/instructor-xl")
 
         #embeddings = HuggingFaceEmbeddings(model_name="hkunlp/instructor-xl", model_kwargs={'device': 'mps'}, encode_kwargs={'device': 'mps'})
 
