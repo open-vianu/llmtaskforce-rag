@@ -1,0 +1,6 @@
+RAG_FOLDER=lexus-rust-playground
+GROUND_TRUTH_FILE=./data/references/ground_truth_v1.xlsx
+OUTPUT_XLSX=./data/results/final_results.xlsx
+OLLAMA_URL=http://localhost:11434/api/generate
+OLLAMA_MODEL=llama3.2
+EVAL_PROMPT="Is the ground truth somewhat contained in the generated answer? Reply with 'true' or 'false' only (small letters)."

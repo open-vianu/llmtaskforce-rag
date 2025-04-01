@@ -1,0 +1,10 @@
+/Users/nicolasperezgonzalez/Desktop/projects/vianu-fdachallenge/eval/target/debug/deps/libcexpr-4758d69ac709ac8d.rmeta: /Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/lib.rs /Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/expr.rs /Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/literal.rs /Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/token.rs
+
+/Users/nicolasperezgonzalez/Desktop/projects/vianu-fdachallenge/eval/target/debug/deps/libcexpr-4758d69ac709ac8d.rlib: /Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/lib.rs /Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/expr.rs /Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/literal.rs /Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/token.rs
+
+/Users/nicolasperezgonzalez/Desktop/projects/vianu-fdachallenge/eval/target/debug/deps/cexpr-4758d69ac709ac8d.d: /Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/lib.rs /Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/expr.rs /Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/literal.rs /Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/token.rs
+
+/Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/lib.rs:
+/Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/expr.rs:
+/Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/literal.rs:
+/Users/nicolasperezgonzalez/.cargo/registry/src/index.crates.io-6f17d22bba15001f/cexpr-0.6.0/src/token.rs:
