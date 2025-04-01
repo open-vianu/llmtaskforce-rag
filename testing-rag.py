@@ -8,6 +8,7 @@ from langchain.chains import ConversationalRetrievalChain
 import time
 import re
 from langchain.prompts import PromptTemplate
+from huggingface_hub import login
 
 custom_prompt_template = """
 You are a knowledgeable assistant. Use the following context to answer the user's question.
@@ -130,6 +131,9 @@ def read_excel_as_dataframe(file_path):
 def main():
     # Record the start time
     start_time = time.time()
+
+    # LOGIN TO HF
+    login("token")
 
     # SETTINGS
     top_k = 5
