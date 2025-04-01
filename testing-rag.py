@@ -13,6 +13,9 @@ from dotenv import dotenv_values
 
 config = dotenv_values(".env")
 
+qa_doc = "./mdsap/Q&A_RDC RESOLUTION No. 665, OF MARCH 30, 2022.xlsx"
+text_doc = "./mdsap/merged/merged2.pdf"
+
 custom_prompt_template = """
 You are a knowledgeable assistant. Use the following context to answer the user's question.
 Whenever possible cite the context in your final answer. If the answer is not in the context, 
@@ -140,8 +143,8 @@ def main():
 
     # SETTINGS
     top_k = 5
-    pdf_docs = ['./lip-guidance-test/MERGED_cosmetic_guidances3.0.pdf']
-    branch_name = "AskYourCosmeticGuidance"  # Set this to the branch name
+    pdf_docs = [text_doc]
+    branch_name = "mdsap"  # Set this to the branch name
     model_used_embeddings = "hkunlp/instructor-xl"  # Set this to the embedding model name
     model_used_chat = "deepseek-r1:8b"  # Set this to the chat model name
     ollama_paraphrasing_model_name = "llama3.2"  # Replace with desired model
@@ -151,7 +154,7 @@ def main():
     # we read the testing document
     #
     #------------------------------------------------------------
-    testing_filepath = './lip-guidance-test/dataset-version2.0.xlsx'
+    testing_filepath = qa_doc
     print(testing_filepath)
     test_df = read_excel_as_dataframe(testing_filepath)
     print(test_df.head(1))
