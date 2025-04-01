@@ -55,7 +55,8 @@ def get_text_chunks(text):
     print(f'\nTOTAL NUMBER OF CHUNKS:\n {len(chunks)}')
     return chunks
 
-def get_vectorstore(text_chunks):
+
+def get_vectorstore(text_chunks, embedding_model=None):
     # Replace OpenAI embeddings with HuggingFace-based or Ollama-compatible embeddings.
     # No environment variable setup for Ollama API key required based on availability.
     try:
