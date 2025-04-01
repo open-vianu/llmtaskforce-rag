@@ -1,13 +1,18 @@
+#!/usr/bin/env python
+
+import argparse
+import re
+import time
+
 import pandas as pd
 from datetime import datetime
 from pdf_extractor import get_pdf_text, get_text_chunks, get_vectorstore
-#from langchain.vectorstores import FAISS
-from langchain_ollama import OllamaLLM
-from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationalRetrievalChain
-import time
-import re
+from langchain.memory import ConversationBufferMemory
 from langchain.prompts import PromptTemplate
+from langchain_community.vectorstores import FAISS
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_ollama import OllamaLLM
 from huggingface_hub import login
 from dotenv import dotenv_values
 
@@ -135,6 +140,23 @@ def read_excel_as_dataframe(file_path):
 
 
 def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('-e', '--embedding-model')
+    parser.set_defaults(command=run_default_pipeline)
+    
+    subparsers = parser.add_subparsers()
+    
+    embed_parser = subparsers.add_parser('embed')
+    embed_parser.add_argument('input', action='append')
+    embed_parser.add_argument('-m', '--model', default='hkunlp/instructor-xl')
+    embed_parser.add_argument('-o', '--output', default='store.idx')
+    embed_parser.set_defaults(command=run_embed_pipeline)
+     
+    args = parser.parse_args()
+    args.command(args)
+    
+    
+def run_default_pipeline(args):
     # Record the start time
     start_time = time.time()
 
@@ -169,13 +191,19 @@ def main():
     # process one by one
     #
     #------------------------------------------------------------
-    raw_text = get_pdf_text(pdf_docs)
-    text_chunks = get_text_chunks(raw_text)
-    if not text_chunks:
-        print("No valid text chunks found. Please check your documents.")
-        return
+    if args.embedding_model:
+        embeddings = HuggingFaceEmbeddings(model_name="hkunlp/instructor-xl")
+        vectorstore = FAISS.load_local(
+            args.embedding_model, embeddings, allow_dangerous_deserialization=True
+        )
+    else:
+        raw_text = get_pdf_text(pdf_docs)
+        text_chunks = get_text_chunks(raw_text)
+        if not text_chunks:
+            print("No valid text chunks found. Please check your documents.")
+            return
 
-    vectorstore = get_vectorstore(text_chunks)
+        vectorstore = get_vectorstore(text_chunks)
     print('\nVECTORSTORE OBTAINED')
 
     # Initialize results list
@@ -244,6 +272,20 @@ def main():
     results_df["date"] = datetime.now().strftime('%d.%m.%Y')
     results_df.to_excel(output_filepath, index=False)
     print(f"\nResults saved to {output_filepath}")
+
+
+def run_embed_pipeline(args):
+    import os
+    
+    for input_ in args.input:
+        if not os.path.exists(input_):
+            raise ValueError(f'"{args.input}" does not exist')
+    raw_text = get_pdf_text(args.input)
+    
+    text_chunks = get_text_chunks(raw_text)
+    vectorstore = get_vectorstore(text_chunks, args.model)
+    vectorstore.save_local(args.output)
+
 
 if __name__ == "__main__":
     main()
