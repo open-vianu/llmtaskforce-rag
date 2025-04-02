@@ -140,10 +140,10 @@ def main():
 
     # SETTINGS
     top_k = 5
-    pdf_docs = ['./lip-guidance-test/MERGED_cosmetic_guidances3.0.pdf']
+    pdf_docs = ['./lip-guidance-test/MERGED_cosmetic_guidances2.0.pdf']
     branch_name = "AskYourCosmeticGuidance"  # Set this to the branch name
     model_used_embeddings = "hkunlp/instructor-xl"  # Set this to the embedding model name
-    model_used_chat = "deepseek-r1:8b"  # Set this to the chat model name
+    model_used_chat = "deepseek-r1:1.5b"  # Set this to the chat model name
     ollama_paraphrasing_model_name = "llama3.2"  # Replace with desired model
 
     #------------------------------------------------------------
@@ -151,7 +151,7 @@ def main():
     # we read the testing document
     #
     #------------------------------------------------------------
-    testing_filepath = './lip-guidance-test/dataset-version2.0.xlsx'
+    testing_filepath = './lip-guidance-test/dataset-version1.0_small.xlsx'
     print(testing_filepath)
     test_df = read_excel_as_dataframe(testing_filepath)
     print(test_df.head(1))
