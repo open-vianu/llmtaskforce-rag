@@ -9,13 +9,14 @@ import plotnine as p9
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-i', '--input', default='eval/RESULTS.md')
+    parser.add_argument('-o', '--output', default='eval/RESULTS.png')
     args = parser.parse_args()
     
     with open(args.input) as fileobj:
         table = parse_table(fileobj)
         plot = (p9.ggplot(table, p9.aes(x = 'embedding_model', y = 'percent_correct', fill = 'chat_model'))
             + p9.geom_col(stat='identity', position='dodge'))
-        plot.save('RESULTS.png', dpi=600)
+        plot.save(args.output, dpi=300)
 
 
 def parse_table(markdown_file):
