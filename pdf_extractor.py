@@ -58,14 +58,18 @@ def get_text_chunks(text):
 
 def get_vectorstore(text_chunks, embedding_model=None):
     # Replace OpenAI embeddings with HuggingFace-based or Ollama-compatible embeddings.
-    # No environment variable setup for Ollama API key required based on availability.
+    # No environment variable setup for Ollama API key required based on availability
+    if embedding_model is None:
+        embedding_model = 'hkunlp/instructor-xl'
+    
     try:
         print('TRY GET VECTORSTORE')
         #embeddings = HuggingFaceEmbeddings(model_name="hkunlp/instructor-xl",
         #                           model_kwargs={'device': 'mps'}, encode_kwargs={'device': 'mps'})
 
+        embeddings = HuggingFaceEmbeddings(model_name=embedding_model, model_kwargs={'trust_remote_code': True})
         #embeddings = HuggingFaceEmbeddings(model_name="NovaSearch/stella_en_400M_v5")
-        embeddings = HuggingFaceEmbeddings(model_name="hkunlp/instructor-xl")
+        #embeddings = HuggingFaceEmbeddings(model_name="hkunlp/instructor-xl")
 
         #embeddings = HuggingFaceEmbeddings(model_name="hkunlp/instructor-xl", model_kwargs={'device': 'mps'}, encode_kwargs={'device': 'mps'})
 
