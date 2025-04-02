@@ -1,0 +1,8 @@
+Executive Summary
+
+Team 2 developed a validated Retrieval-Augmented Generation (RAG) system to support question-and-answer tasks on MDSAP regulatory documents. 
+The system addresses a key challenge in regulatory contexts: the difficulty of accurately interpreting and validating complex technical documents. 
+Over a day and a half, the team implemented a RAG pipeline indexing key sources such as the MDSAP Audit Approach, AU P0037, Q&A documents, 
+GHTF SG3/N19, and Brazil’s RDC 665/2022. The system enables users to ask natural language questions and receive answers supported by source references, 
+particularly focusing on the classification of findings (nonconformities). Validation was performed using both LLM-based judgment and manual review. 
+The solution improves efficiency, consistency, and traceability in regulatory audits and has the potential for scalability to other jurisdictions and frameworks.
