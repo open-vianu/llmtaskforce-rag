@@ -145,19 +145,19 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('-e', '--embedding-model')
     parser.set_defaults(command=run_default_pipeline)
-    
+
     subparsers = parser.add_subparsers()
-    
+
     embed_parser = subparsers.add_parser('embed')
     embed_parser.add_argument('input', action='append')
     embed_parser.add_argument('-m', '--model', default='hkunlp/instructor-xl')
     embed_parser.add_argument('-o', '--output', default='store.idx')
     embed_parser.set_defaults(command=run_embed_pipeline)
-     
+
     args = parser.parse_args()
     args.command(args)
-    
-    
+
+
 def run_default_pipeline(args):
     # Record the start time
     start_time = time.time()
@@ -170,6 +170,8 @@ def run_default_pipeline(args):
     pdf_docs = [text_doc]
     branch_name = "mdsap"  # Set this to the branch name
     model_used_embeddings = "hkunlp/instructor-xl"  # Set this to the embedding model name
+    # CHAT ALTERNATIVE: "deepseek-r1:8b"
+    # CHAT ALTERNATIVE: "qwen2.5:7b"
     model_used_chat = "deepseek-r1:8b"  # Set this to the chat model name
     ollama_paraphrasing_model_name = "llama3.2"  # Replace with desired model
 
@@ -206,6 +208,7 @@ def run_default_pipeline(args):
             return
 
         vectorstore = get_vectorstore(text_chunks)
+
     print('\nVECTORSTORE OBTAINED')
 
     # Initialize results list
@@ -283,12 +286,12 @@ def run_default_pipeline(args):
 
 def run_embed_pipeline(args):
     import os
-    
+
     for input_ in args.input:
         if not os.path.exists(input_):
             raise ValueError(f'"{args.input}" does not exist')
     raw_text = get_pdf_text(args.input)
-    
+
     text_chunks = get_text_chunks(raw_text)
     vectorstore = get_vectorstore(text_chunks, args.model)
     vectorstore.save_local(args.output)

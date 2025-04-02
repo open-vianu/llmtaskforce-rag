@@ -37,7 +37,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     let ground_truth_file = env::var("GROUND_TRUTH_FILE")
         .unwrap_or_else(|_| {
             eprintln!("⚠️ Warning: GROUND_TRUTH_FILE not found in environment. Using default.");
-            "./data/references/ground_truth_v1.xlsx".to_string()
+            "./data/references/ground_truth_v4.xlsx".to_string()
         });
 
     let output_xlsx = env::var("OUTPUT_XLSX")
