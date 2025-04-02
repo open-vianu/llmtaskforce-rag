@@ -170,7 +170,9 @@ def run_default_pipeline(args):
     pdf_docs = [text_doc]
     branch_name = "mdsap"  # Set this to the branch name
     model_used_embeddings = "hkunlp/instructor-xl"  # Set this to the embedding model name
-    model_used_chat = "deepseek-r1:1.5b"  # Set this to the chat model name
+    # CHAT ALTERNATIVE: "deepseek-r1:8b"
+    # CHAT ALTERNATIVE: "qwen2.5:7b"
+    model_used_chat = "deepseek-r1:8b"  # Set this to the chat model name
     ollama_paraphrasing_model_name = "llama3.2"  # Replace with desired model
 
     #------------------------------------------------------------
