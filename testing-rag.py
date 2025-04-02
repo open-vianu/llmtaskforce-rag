@@ -196,7 +196,14 @@ def run_default_pipeline(args):
     #
     #------------------------------------------------------------
     if args.embedding_model:
-        embeddings = HuggingFaceEmbeddings(model_name="hkunlp/instructor-xl")
+        embedding_model = args.embedding_model.split('.', 1)[1]
+        model_name = {
+            'instructor_xl': 'hkunlp/instructor-xl',
+            'bilingual-embedding-large': 'Lajavaness/bilingual-embedding-large',
+            'gte-Qwen2-7B-instruct': 'Alibaba-NLP/gte-Qwen2-7B-instruct',
+            'multilingual-e5-large-instruct': 'intfloat/multilingual-e5-large-instruct'
+        }[embedding_model]
+        embeddings = HuggingFaceEmbeddings(model_name=model_name, model_kwargs = {'trust_remote_code': True})
         vectorstore = FAISS.load_local(
             args.embedding_model, embeddings, allow_dangerous_deserialization=True
         )
